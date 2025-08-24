@@ -60,19 +60,3 @@ This project is licensed under the MIT License.
 Vaibhav Agarwal
 
 GitHub: @itzvaibhav4
-
-yaml
-Copy
-Edit
-
----
-
-Do you also want me to **add a short “Live Demo” section** with a link (in case you host it on GitHub Pages or Vercel)?
-
-
-
-
-
-
-
-Ask ChatGPT
