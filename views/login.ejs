@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login page</title>
+  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <div class="wrapper">
+    <header>Login Form</header>
+    <form action="/login" method="POST">
+      
+      <div class="field email">
+        <div class="input-area">
+          <input type="email" placeholder="Email Address" name="email">
+          <i class="icon fas fa-envelope"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error error-txt"><p ><%= message %></p></div>
+      </div>
+      <div class="field password">
+        <div class="input-area">
+          <input type="password" placeholder="Password" name="password">
+          <i class="icon fas fa-lock"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        
+        <div>
+          <p style="
+          color: #dc3545;
+          text-align: left;
+          margin-top: 10px;"><%= message %></p>
+        </div>
+        <div class="error error-txt"><%= message %></div>
+      </div>
+      <div class="pass-txt"><a href="/signup">Forgot password?</a></div>
+      <input type="submit" value="Login">
+    </form>
+    
+    <div class="sign-txt">Not yet registered? <a href="/signup">Signup now</a></div>
+  </div>
+
+</body>
+</html> 

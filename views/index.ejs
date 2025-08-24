@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="css/styles4.css">
+    <!--Font-styling-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">     
+<!-- Bootstrap Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Quotes Generator</title>
+</head>
+<style>
+  /*General styles*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+a
+{
+  color: #fff;
+  font-size:30px;
+
+}
+body{
+    display: flex; 
+    background: url(img/image.jpg) no-repeat center center/ cover;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+select {
+    font-size:20px;
+ }
+.container{
+    width: 100vw;
+    height: 450px;
+    align-items: center;
+}
+.searchbar{
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: solid 5px #fff;
+    color: #fff;
+    background-color: rgb(5, 4, 4);
+    padding: 5px;
+    width: 20%;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+.selectopn #select1
+{
+  margin-top: 7px;
+    border: solid 4px #ececec;
+    border-radius: 5px;
+}
+header{
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+      justify-content: space-between;
+    color: #fff;
+    padding: 5px;
+    width: 100vw;
+    margin: 20px auto;
+    margin-bottom: 40px;
+}
+.main-content{
+    background-color: #fff;
+    align-items: center;
+    margin-left: 35%;
+    width: 30%;
+    border: solid 5px #030303;
+    height: 300px;
+    border-radius: 15px;
+    padding: 50px;
+    box-shadow: 0 0 10px ;
+}
+
+.main-content .textarea{
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.main-content .person{
+    font-size: 1.6rem;
+    color: blue;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+.button #selectbtn
+{
+    margin-top: 10px;
+    background-color: rgb(253, 253, 253);
+    color: #030303;
+    padding: 10px 25px;
+    border-radius: 5px;
+    border-color: rgb(90, 85, 85);
+    font-size: 1.2rem;
+}
+.button #newQuote{
+    margin-top: 20px;
+    background-color: black;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+ }
+.button #newQuote:active{
+    background-color:lightblue;
+}
+</style>
+<body>
+  <div >
+  <header>
+    <h2><%= username %></h2>
+      <div class="button">
+        <a href="/" >Logout</a>
+    </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+        <div class="searchbar">
+            <div class="selectopn">
+            <h2> Select the author : </h2>
+                <select id="select1"  >
+                    <option value="none" selected disabled hidden>Select an Option</option>
+                    <option value="Alan Kay">Alan Kay</option>
+                    <option value="Albert Einstein">Albert Einstein</option>
+                    <option value="Albert Schweitzer">Albert Schweitzer</option>
+                    <option value="Bo Bennett">Bo Bennett</option>
+                    <option value="Brian Tracy">Brian Tracy</option>
+                    <option value="Charles Swindoll">Charles Swindoll</option>
+                    <option value="Confucius">Confucius</option>
+                    <option value="Dalai Lama">Dalai Lama</option>
+                    <option value="Eleanor Roosevelt">Eleanor Roosevelt</option>
+                    <option value="Frank Sinatra">Frank Sinatra</option>
+                    <option value="Franklin Roosevelt">Franklin Roosevelt</option>
+                    <option value="John Lennon">John Lennon</option>
+                    <option value="Jordan Belfort">Jordan Belfort</option>
+                    <option value="Nelson Mandela">Nelson Mandela</option>
+                    <option value="Ralph Waldo Emerson">Ralph Emerson</option>
+                    <option value="Robert Frost">Robert Frost</option>
+                    <option value="Sam Levenson">Sam Levenson</option>
+                    <option value="Stephen King">Stephen King</option>
+                    <option value="Steve Jobs">Steve Jobs</option>
+                    <option value="Theodore Roosevelt">Theodore Roosevelt</option>
+                    <option value="Thomas Jefferson">Thomas Jefferson</option>
+                    <option value="Winston Churchill">Winston Churchill</option>
+                    <option value="William Butler Yeats">William Butler </option>
+                    <option value="Wayne Gretzky">Wayne Gretzky</option>
+                </select>
+        </div>
+        <div class="button">
+            <button id="selectbtn" onclick="getOption()"> Go </button>
+        </div>
+        </div>
+
+        <div class="main-content">
+            <div class="textarea">
+                <span class="quote">
+                    "battle not with monsters lest ye become a monster and if you gaze into the abyss the abyss gazes into you"
+                </span>
+            </div>
+            <div class="person">
+                Freidrich Nietzsche
+            </div>
+
+            <div class="button" >
+                <button id="newQuote" onclick="next()">New Quote</button>
+            </div>
+        </div>
+    </div>
+  </div>
+<!--Java Script-->
+<script >
+    
+    let btn = document.querySelector('#newQuote');
+    let quote = document.querySelector('.quote');
+    let author = document.querySelector('.person');
+    
+    const quotes = 
+     [
+      { 
+        quote: "The only way to do great work is to love what you do.", 
+        author: "Steve Jobs" 
+      },
+      { 
+        quote: "In the middle of difficulty lies opportunity.", 
+        author: "Albert Einstein" 
+      },
+      { 
+        quote: "Strive not to be a success, but rather to be of value.", 
+        author: "Albert Einstein" 
+      },
+      { 
+        quote: "The future belongs to those who believe in the beauty of their dreams.", 
+        author: "Eleanor Roosevelt" 
+      },
+      { 
+        quote: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+        author: "Winston Churchill"
+      },
+      { 
+        quote: "The best way to predict the future is to invent it.",
+        author: "Alan Kay"
+      },
+      { 
+        quote: "The greatest glory in living lies not in never falling, but in rising every time we fall.", 
+        author: "Nelson Mandela" 
+      },
+      { 
+        quote: "Life is what happens when you're busy making other plans.", 
+        author: "John Lennon" 
+      },
+      { 
+        quote: "Get busy living or get busy dying.", 
+        author: "Stephen King" 
+      },
+      { 
+        quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", 
+        author: "Brian Tracy" 
+      },
+      { 
+        quote: "Life is really simple, but we insist on making it complicated.", 
+        author: "Confucius" 
+      },
+      { 
+        quote: "The purpose of our lives is to be happy.", 
+        author: "Dalai Lama" 
+      },
+      { 
+        quote: "Life is 10% what happens to us and 90% how we react to it.", 
+        author: "Charles Swindoll" 
+      },
+      { 
+        quote: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.", 
+        author: "Albert Schweitzer" 
+      },
+      { 
+        quote: "Do not wait to strike till the iron is hot, but make it hot by striking.", 
+        author: "William Butler Yeats" 
+      },
+      { 
+        quote: "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.", 
+        author: "Jordan Belfort" 
+      },
+      { 
+        quote: "Don't watch the clock; do what it does. Keep going.", 
+        author: "Sam Levenson" 
+      },
+      { 
+        quote: "The only person you are destined to become is the person you decide to be.", 
+        author: "Ralph Waldo Emerson" 
+      },
+      { 
+        quote: "The best revenge is massive success.", 
+        author: "Frank Sinatra" 
+      },
+      { 
+        quote: "Success is not in what you have, but who you are.", 
+        author: "Bo Bennett" 
+      },
+      { 
+        quote: "You miss 100% of the shots you don't take.", 
+        author: "Wayne Gretzky" 
+      },
+      { 
+        quote: "The only limit to our realization of tomorrow will be our doubts of today.", 
+        author: "Franklin Roosevelt" 
+      },
+      { 
+        quote: "Believe you can and you're halfway there.", 
+        author: "Theodore Roosevelt" 
+      },
+      { 
+        quote: "In three words I can sum up everything I've learned about life: it goes on.", 
+        author: "Robert Frost" 
+      },
+      { 
+        quote: "Life is what happens when you're busy making other plans.", 
+        author: "John Lennon" 
+      },
+      { 
+        quote: "Get busy living or get busy dying.", 
+        author: "Stephen King" 
+      },
+      { 
+        quote: "You have within you right now, everything you need to deal with whatever the world can throw at you.", 
+        author: "Brian Tracy" 
+      },
+      { 
+        quote: "Life is really simple, but we insist on making it complicated.", 
+        author: "Confucius" 
+      },
+      { 
+        quote: "The purpose of our lives is to be happy.", 
+        author: "Dalai Lama" 
+      },
+      { 
+        quote: "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.", 
+        author: "Albert Schweitzer" 
+      },
+      { 
+        quote: "I find that the harder I work, the more luck I seem to have.", 
+        author: "Thomas Jefferson" 
+      },
+      { 
+        quote: "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.", 
+        author: "Jordan Belfort" 
+      },
+      { 
+        quote: "Don't watch the clock; do what it does. Keep going.", 
+        author: "Sam Levenson" 
+      },
+      { 
+        quote: "The best revenge is massive success.", 
+        author: "Frank Sinatra" 
+      },
+      { 
+        quote: "Success is not in what you have, but who you are.", 
+        author: "Bo Bennett" 
+      },
+      { 
+        quote: "You miss 100% of the shots you don't take.", 
+        author: "Wayne Gretzky" 
+      },
+      { 
+        quote: "The only limit to our realization of tomorrow will be our doubts of today.", 
+        author: "Franklin Roosevelt" 
+      },
+      { 
+        quote: "Believe you can and you're halfway there.", 
+        author: "Theodore Roosevelt" 
+      },
+      { 
+        quote: "In three words I can sum up everything I've learned about life: it goes on.", 
+        author: "Robert Frost" 
+      },
+      { 
+        quote: "Success is not in what you have, but who you are.", 
+        author: "Bo Bennett" 
+      },
+      { 
+        quote: "You miss 100% of the shots you don't take.", 
+        author: "Wayne Gretzky" 
+      },
+      { 
+        quote: "The only limit to our realization of tomorrow will be our doubts of today.", 
+        author: "Franklin Roosevelt" 
+      },
+    ];
+    
+    
+    
+    const f = document.getElementById('form');
+    const q =document.querySelector('#select1');
+    var authorname="";
+    
+    // Checking For Search  Bar
+    function getOption()
+    {
+      
+      function standardizeCapitalization(input)
+      {
+    
+        return input.toLowerCase().replace(/\b\w/g, firstLetter => firstLetter.toUpperCase());
+      
+      }
+      var authorname=q.value;
+      if(authorname !=="none")
+      {
+      authorname = standardizeCapitalization(authorname);
+      var authorQuote = quotes.find(quote => standardizeCapitalization(quote.author) === authorname);
+    
+      if (authorQuote) 
+      {
+    
+        quote.innerHTML = authorQuote.quote;
+        author.innerHTML = authorQuote.author;
+      
+      } 
+    
+      else
+      {
+        quote.innerHTML = "Invalid Selection";
+        author.innerHTML = "";
+      
+      }
+      var index = quotes.findIndex(quote => quote.author === authorname);
+    
+    // Getting Next Quote by Searched Author
+      btn.addEventListener('click', function()
+      {
+      {
+    
+        while (index < quotes.length - 1)
+        {
+    
+         var nextquote = quotes[index + 1];
+    
+          if(nextquote.author === authorname)
+          {
+    
+            quote.innerHTML = nextquote.quote;
+            author.innerHTML = nextquote.author;
+    
+            index=index+1;
+            break;
+    
+          }
+    
+          else
+          {
+            index=index+1;
+          }
+        } 
+    
+         if(nextquote.author !== authorname) 
+        {
+        quote.innerHTML = "No More Quotes Found";
+        author.innerHTML = "";
+        }
+      }
+    
+    });
+      }
+    }
+    f.addEventListener('submit', submitted);
+    
+    // Generating Random Quotes
+    function next()
+    {
+       
+        let random= Math.floor(Math.random() * quotes.length);
+    
+        quote.innerHTML = quotes[random].quote;
+    
+        author.innerHTML = quotes[random].author;
+      
+    }
+       </script>
+</body>
+</html>
