@@ -16,23 +16,36 @@
   <body>
     <div class="container">
       <header>Signup</header>
+
+      <!-- ✅ Display backend messages -->
+      <% if (message && message.length > 0) { %>
+        <p style="color: red; text-align: center;"><%= message %></p>
+      <% } %>
+
       <form action="/signup" method="POST">
+        
+        <!-- Email -->
         <div class="field email-field">
           <div class="input-field">
-           <input type="email" placeholder="Enter your email" class="email" name="email" />
-
+            <input type="email" placeholder="Enter your email" class="email" name="email" required />
           </div>
-          <span class="error email-error">
-            <i class="bx bx-error-circle error-icon"></i>
-            <p class="error-text">Please enter a valid email 
-          </p>
-          </span>
         </div>
+
+        <!-- UserID -->
         <div class="field user-field">
           <div class="input-field">
-            <input type="text" placeholder="Enter your username"  name="userid" />
+            <input type="text" placeholder="Enter your UserID" name="userid" required />
           </div>
         </div>
+
+        <!-- Username (NEW FIELD) -->
+        <div class="field username-field">
+          <div class="input-field">
+            <input type="text" placeholder="Enter your username" name="username" required />
+          </div>
+        </div>
+
+        <!-- Password -->
         <div class="field create-password">
           <div class="input-field">
             <input
@@ -40,17 +53,13 @@
               placeholder="Create password"
               class="password"
               name="password"
+              required
             />
             <i class="bx bx-hide show-hide"></i>
           </div>
-          <span class="error password-error">
-            <i class="bx bx-error-circle error-icon"></i>
-            <p class="error-text"> 
-              Please enter atleast 8 charatcer with number, symbol, small and
-              capital letter.
-            </p>
-          </span>
         </div>
+
+        <!-- Confirm Password -->
         <div class="field confirm-password">
           <div class="input-field">
             <input
@@ -58,39 +67,33 @@
               placeholder="Confirm password"
               class="cPassword"
               name="cpassword"
+              required
             />
             <i class="bx bx-hide show-hide"></i>
           </div>
-          <span class="error cPassword-error">
-            <i class="bx bx-error-circle error-icon" ></i>
-            <p class="error-text">Password don't match
-          </p>
-          </span>
         </div>
+
+        <!-- Submit -->
         <div class="input-field button">
           <input type="submit" value="Submit Now" />
         </div>
       </form>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for show/hide password -->
+    <script>
+      const eyeIcons = document.querySelectorAll(".show-hide");
+      eyeIcons.forEach((eyeIcon) => {
+        eyeIcon.addEventListener("click", () => {
+          const pInput = eyeIcon.parentElement.querySelector("input");
+          if (pInput.type === "password") {
+            eyeIcon.classList.replace("bx-hide", "bx-show");
+            return (pInput.type = "text");
+          }
+          eyeIcon.classList.replace("bx-show", "bx-hide");
+          pInput.type = "password";
+        });
+      });
+    </script>
   </body>
 </html>
-<script>
-  
-const eyeIcons = document.querySelectorAll(".show-hide");
-eyeIcons.forEach((eyeIcon) => 
-{
-  eyeIcon.addEventListener("click", () =>
-   {
-    const pInput = eyeIcon.parentElement.querySelector("input");
-    if (pInput.type === "password") 
-    {
-      eyeIcon.classList.replace("bx-hide", "bx-show");
-      return (pInput.type = "text");
-    }
-    eyeIcon.classList.replace("bx-show", "bx-hide");
-    pInput.type = "password";
-  });
-});
-</script>
