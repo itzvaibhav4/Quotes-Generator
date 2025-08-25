@@ -12,35 +12,44 @@
     <header>Login Form</header>
     <form action="/login" method="POST">
       
+      <!-- Email Field -->
       <div class="field email">
         <div class="input-area">
-          <input type="email" placeholder="Email Address" name="email">
+          <input type="email" placeholder="Email Address" name="email" required>
           <i class="icon fas fa-envelope"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
-        <div class="error error-txt"><p ><%= message %></p></div>
       </div>
+
+      <!-- Password Field -->
       <div class="field password">
         <div class="input-area">
-          <input type="password" placeholder="Password" name="password">
+          <input type="password" placeholder="Password" name="password" required>
           <i class="icon fas fa-lock"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
-        
-        <div>
-          <p style="
+      </div>
+
+      <!-- Error Message (only once) -->
+      <% if (message && message.length > 0) { %>
+        <div class="error-message" style="
           color: #dc3545;
           text-align: left;
-          margin-top: 10px;"><%= message %></p>
+          margin: 10px 0;
+          font-size: 14px;
+        ">
+          <%= message %>
         </div>
-        <div class="error error-txt"><%= message %></div>
-      </div>
+      <% } %>
+
+      <!-- Forgot password -->
       <div class="pass-txt"><a href="/signup">Forgot password?</a></div>
+
+      <!-- Submit button -->
       <input type="submit" value="Login">
     </form>
     
     <div class="sign-txt">Not yet registered? <a href="/signup">Signup now</a></div>
   </div>
-
 </body>
-</html> 
+</html>
