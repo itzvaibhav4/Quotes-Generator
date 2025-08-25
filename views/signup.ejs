@@ -1,98 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up page</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <header>Signup</header>
-      <form action="/signup" method="POST">
-        
-        <!-- Show error/success message -->
-        <% if (message && message.length > 0) { %>
-          <div style="color: red; margin-bottom: 10px;"><%= message %></div>
-        <% } %>
-
-        <!-- Email -->
-        <div class="field email-field">
-          <div class="input-field">
-            <input type="email" placeholder="Enter your email" class="email" name="email" required />
-          </div>
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link
+    href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="container">
+    <header>Signup</header>
+    <form action="/signup" method="POST">
+      
+      <!-- Username -->
+      <div class="field user-field">
+        <div class="input-field">
+          <input type="text" name="username" placeholder="Enter your username" required />
         </div>
+      </div>
 
-        <!-- Username -->
-        <div class="field user-field">
-          <div class="input-field">
-            <input type="text" placeholder="Enter your username" name="username" required />
-          </div>
+      <!-- Email -->
+      <div class="field email-field">
+        <div class="input-field">
+          <input type="email" name="email" placeholder="Enter your email" required />
         </div>
+      </div>
 
-        <!-- User ID (optional, only if you keep it in DB) -->
-        <div class="field id-field">
-          <div class="input-field">
-            <input type="text" placeholder="Enter your User ID" name="userid" />
-          </div>
+      <!-- Password -->
+      <div class="field create-password">
+        <div class="input-field">
+          <input type="password" name="password" placeholder="Create password" required />
+          <i class="bx bx-hide show-hide"></i>
         </div>
+      </div>
 
-        <!-- Password -->
-        <div class="field create-password">
-          <div class="input-field">
-            <input
-              type="password"
-              placeholder="Create password"
-              class="password"
-              name="password"
-              required
-            />
-            <i class="bx bx-hide show-hide"></i>
-          </div>
+      <!-- Confirm Password -->
+      <div class="field confirm-password">
+        <div class="input-field">
+          <input type="password" name="cpassword" placeholder="Confirm password" required />
+          <i class="bx bx-hide show-hide"></i>
         </div>
+      </div>
 
-        <!-- Confirm Password -->
-        <div class="field confirm-password">
-          <div class="input-field">
-            <input
-              type="password"
-              placeholder="Confirm password"
-              class="cPassword"
-              name="cpassword"
-              required
-            />
-            <i class="bx bx-hide show-hide"></i>
-          </div>
-        </div>
+      <!-- Submit -->
+      <div class="input-field button">
+        <input type="submit" value="Submit Now" />
+      </div>
+    </form>
 
-        <!-- Submit -->
-        <div class="input-field button">
-          <input type="submit" value="Submit Now" />
-        </div>
-      </form>
-    </div>
+    <!-- Error / Success message -->
+    <% if (message) { %>
+      <p style="color: red; margin-top: 10px;"><%= message %></p>
+    <% } %>
+  </div>
 
-    <!-- JS -->
-    <script>
-      const eyeIcons = document.querySelectorAll(".show-hide");
-      eyeIcons.forEach((eyeIcon) => {
-        eyeIcon.addEventListener("click", () => {
-          const pInput = eyeIcon.parentElement.querySelector("input");
-          if (pInput.type === "password") {
-            eyeIcon.classList.replace("bx-hide", "bx-show");
-            return (pInput.type = "text");
-          }
+  <script>
+    // Toggle password visibility
+    const eyeIcons = document.querySelectorAll(".show-hide");
+    eyeIcons.forEach((eyeIcon) => {
+      eyeIcon.addEventListener("click", () => {
+        const pInput = eyeIcon.parentElement.querySelector("input");
+        if (pInput.type === "password") {
+          eyeIcon.classList.replace("bx-hide", "bx-show");
+          pInput.type = "text";
+        } else {
           eyeIcon.classList.replace("bx-show", "bx-hide");
           pInput.type = "password";
-        });
+        }
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
