@@ -1,4 +1,4 @@
-// index.js
+// solution.js
 import express from "express";
 import bodyParser from "body-parser";
 import pool from "./db.js";
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 // ✅ Signup Page
 app.get("/signup", (req, res) => {
-  res.render("signup.ejs");
+  res.render("signup.ejs", { message: "" });
 });
 
 // ✅ Login Page
@@ -33,20 +33,21 @@ app.get("/login", (req, res) => {
 
 // ✅ Signup Route
 app.post("/signup", async (req, res) => {
-  const { userid: username, username: email, password, cpassword } = req.body;
+  const { userid, username, email, password, cpassword } = req.body;
 
   const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
   const passPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+  // validation
   if (!email.match(emailPattern)) {
-    return res.render("signup.ejs");
+    return res.render("signup.ejs", { message: "❌ Invalid Email Format" });
   }
   if (!password.match(passPattern)) {
-    return res.render("signup.ejs");
+    return res.render("signup.ejs", { message: "❌ Weak Password" });
   }
-  if (password !== cpassword || !cpassword) {
-    return res.render("signup.ejs");
+  if (password !== cpassword) {
+    return res.render("signup.ejs", { message: "❌ Passwords do not match" });
   }
 
   try {
@@ -56,17 +57,17 @@ app.post("/signup", async (req, res) => {
     );
 
     if (checkResult.rows.length > 0) {
-      return res.send("Email already exists. Try logging in.");
+      return res.render("signup.ejs", { message: "❌ Email already exists. Try logging in." });
     }
 
     await pool.query(
-      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3)",
-      [username, email, password]
+      "INSERT INTO users (userid, username, email, password) VALUES ($1, $2, $3, $4)",
+      [userid, username, email, password]
     );
 
     res.render("index.ejs", { username });
   } catch (err) {
-    console.error(err);
+    console.error("Signup Error:", err);
     res.status(500).send("❌ Error registering user");
   }
 });
@@ -77,7 +78,7 @@ app.post("/login", async (req, res) => {
 
   const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
   if (!email.match(pattern)) {
-    return res.render("login.ejs", { message: "Invalid Email" });
+    return res.render("login.ejs", { message: "❌ Invalid Email" });
   }
 
   try {
@@ -90,18 +91,18 @@ app.post("/login", async (req, res) => {
       if (password === user.password) {
         return res.render("index.ejs", { username: user.username });
       } else {
-        return res.render("login.ejs", { message: "Incorrect Password" });
+        return res.render("login.ejs", { message: "❌ Incorrect Password" });
       }
     } else {
-      return res.render("login.ejs", { message: "Email not found" });
+      return res.render("login.ejs", { message: "❌ Email not found" });
     }
   } catch (err) {
-    console.error(err);
+    console.error("Login Error:", err);
     res.status(500).send("❌ Error logging in");
   }
 });
 
-// ✅ Test route
+// ✅ Test route for DB connection
 app.get("/db-test", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
