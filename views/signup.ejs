@@ -7,7 +7,7 @@
     <title>Sign Up page</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
@@ -16,14 +16,13 @@
   <body>
     <div class="container">
       <header>Signup</header>
-
-      <!-- ✅ Display backend messages -->
-      <% if (message && message.length > 0) { %>
-        <p style="color: red; text-align: center;"><%= message %></p>
-      <% } %>
-
       <form action="/signup" method="POST">
         
+        <!-- Show error/success message -->
+        <% if (message && message.length > 0) { %>
+          <div style="color: red; margin-bottom: 10px;"><%= message %></div>
+        <% } %>
+
         <!-- Email -->
         <div class="field email-field">
           <div class="input-field">
@@ -31,17 +30,17 @@
           </div>
         </div>
 
-        <!-- UserID -->
+        <!-- Username -->
         <div class="field user-field">
           <div class="input-field">
-            <input type="text" placeholder="Enter your UserID" name="userid" required />
+            <input type="text" placeholder="Enter your username" name="username" required />
           </div>
         </div>
 
-        <!-- Username (NEW FIELD) -->
-        <div class="field username-field">
+        <!-- User ID (optional, only if you keep it in DB) -->
+        <div class="field id-field">
           <div class="input-field">
-            <input type="text" placeholder="Enter your username" name="username" required />
+            <input type="text" placeholder="Enter your User ID" name="userid" />
           </div>
         </div>
 
@@ -80,7 +79,7 @@
       </form>
     </div>
 
-    <!-- JavaScript for show/hide password -->
+    <!-- JS -->
     <script>
       const eyeIcons = document.querySelectorAll(".show-hide");
       eyeIcons.forEach((eyeIcon) => {
