@@ -1,17 +1,14 @@
-import dotenv from "dotenv";
+import pkg from 'pg';
+import dotenv from 'dotenv';
 
-// Load .env only in local development
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
+dotenv.config(); // loads local.env in dev (ignored in production)
 
-import pkg from "pg";
 const { Pool } = pkg;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false, // required for Render
+    rejectUnauthorized: false, // needed for Render PostgreSQL
   },
 });
 
